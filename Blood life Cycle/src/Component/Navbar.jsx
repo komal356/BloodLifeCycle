@@ -29,9 +29,12 @@ export default function Navbar() {
   </div>
   <div className="relative isolate px-6 pt-14 lg:px-8">
         {/* Logo in the top left corner */}
-        <div className="absolute bottom-80 left-4">
-          <img src="/img/Logo1.png" alt="Logo" className="w-96  h-2rem sm:h-8rem md:h-8rem lg:h-14rem xl:h-15rem" />
-        </div>
+        <div className="absolute bottom-80 left-4" style={{ bottom: 'calc(20rem + 29px)' }}> {/* Adjust bottom value by 3px */}
+  <img src="/img/Logo1.png" alt="Logo" className="w-96 h-2rem sm:h-8rem md:h-8rem lg:h-14rem xl:h-15rem" />
+</div>
+
+
+
 
   <div className="relative isolate px-6 pt-14 lg:px-8">
     <div className="mx-auto max-w-2xl py-20 sm:py-24 lg:py-28">
