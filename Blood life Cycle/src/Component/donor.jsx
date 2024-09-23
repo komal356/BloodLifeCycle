@@ -67,10 +67,15 @@ const Donor = () => {
     if (formData.lastDonationDate && formData.lastDonationDate > today) {
       errors.lastDonationDate = 'Last Donation Date cannot be in the future';
     }
-
+  
     // Medication Field Validation
     if (formData.donateBefore === 'yes' && !formData.medication) {
       errors.medication = 'Medication field is required if you have donated before';
+    }
+  
+    // Check if last donation date is filled when donateBefore is yes
+    if (formData.donateBefore === 'yes' && !formData.lastDonationDate) {
+      errors.lastDonationDate = 'Last Donation Date is required if you have donated before';
     }
     
     if (!phoneRegex.test(formData.emergencyContactNo)) errors.emergencyContactNo = 'Emergency Contact Number must start with +92, 0092, or 03 and be followed by 9 digits';
@@ -252,7 +257,7 @@ const Donor = () => {
   onChange={handleChange}
   required
   error={!!formErrors.contactNo} // Update error reference
-  helperText={formErrors.contactNo} // Update helper text reference
+  // Removed the helperText line
   InputLabelProps={{
     style: { color: 'black' }, // Set the label color to black
   }}
@@ -274,7 +279,7 @@ const Donor = () => {
     },
   }}
 />
-Text={formErrors.contactNo}
+
             
             <FormControl variant="outlined" required sx={{ width: '100%' }}>
   <InputLabel
@@ -534,7 +539,48 @@ Text={formErrors.contactNo}
   }}
 />
 
-        
+<TextField
+  label="Medication"
+  name="medication"
+  variant="outlined"
+  value={formData.medication}
+  onChange={handleChange}
+  required
+  error={!!formErrors.medication}
+  helperText={formErrors.medication}
+  InputLabelProps={{
+    style: { color: 'black' }, // Label color
+  }}
+  sx={{
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'black', // Default border color
+      },
+      '&:hover fieldset': {
+        borderColor: 'black', // Border color on hover
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'black', // Change border color when focused
+      },
+      '& input': {
+        color: 'black', // Text color when entering data
+      },
+      '& input:focus': {
+        color: 'black', // Text color when focused
+      },
+    },
+    '& .MuiInputLabel-root': {
+      color: 'black', // Default label color
+      '&.Mui-focused': {
+        color: 'black', // Label color when focused
+      },
+      '&.MuiInputLabel-shrink': {
+        color: 'black', // Label color when shrunk
+      },
+    },
+  }}
+/>
+  
 <TextField
   label="Emergency Contact Number"
   name="emergencyContactNo"
