@@ -39,72 +39,242 @@ export default function AppFeedback() {
 
      </div>
 {/* </Typography> */}
-    
 <Grid container spacing={7} justifyContent="center">
-      <Grid item>
-      <Card sx={{ width: 300, height: 240, mt: 7,backgroundColor:'#AF0B0A', boxShadow: `0px 8px 16px rgba(175, 11, 10, 0.5)` }}>
-          <CardContent>
-           
-            <Typography variant="body2" sx={{ color: 'white', fontSize: '1.2rem',padding: '2px' }}>
-            <FormatQuoteIcon sx={{ fontSize: '3rem', ml: 1, transform: 'rotate(180deg)' }} />A well-designed site that simplifies the donation process. Perfect for anyone eager to help and make a meaningful difference!   <FormatQuoteIcon sx={{ fontSize: '3rem', mr: 1 }} /> 
-            </Typography>
-            <Typography
-  sx={{
-        textAlign: 'center',
-        color: 'white',
-        fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem' }, // Responsive font sizes
-        
-  }}
->
-  Ali Raza
-</Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item>
-      <Card sx={{ width: 300, height: 240, mt: 7,backgroundColor:'#AF0B0A',color: 'white', boxShadow: `0px 8px 16px rgba(175, 11, 10, 0.5)` ,}}>
-         
-          <CardContent>
+  <Grid item>
+    <Card
+      sx={{
+        width: 300,
+        height: 240,
+        mt: 7,
+        backgroundColor: '#AF0B0A',
+        boxShadow: `0px 8px 16px rgba(175, 11, 10, 0.5)`,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <CardContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%',
+          padding: '0', // Remove padding
+        }}
+      >
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'white',
+            fontSize: '1.2rem',
+            lineHeight: '1.5', // Set line height for equal spacing
+            margin: '0',       // Remove margin
+            textAlign: 'left',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flex: 1,
+             // Allow the text to flex and take up space
+             position:'relative',top:'20px',
+          }}
+        >
+          <FormatQuoteIcon sx={{ fontSize: '3rem', ml: 1, transform: 'rotate(180deg)',position:'relative',bottom:'66px' }} />
+               "A well-designed site that makes donating simple, perfect for anyone looking to make a difference."
+          <FormatQuoteIcon sx={{ fontSize: '3rem', mr: 1 ,position:'relative',top:'50px'
             
-            <Typography variant="body2" sx={{ color: 'white', fontSize: '1.2rem' ,padding: '2px'}}>
-            <FormatQuoteIcon sx={{ fontSize: '3rem', ml: 1, transform: 'rotate(180deg)' }} />The site is intuitive and streamlined, making it easy to contribute. A fantastic way to make a positive impact!<FormatQuoteIcon sx={{ fontSize: '3rem', mr: 1 }} /> 
-            </Typography>
-            <Typography
+          }} />
+        </Typography>
+        <Typography
+          sx={{
+            textAlign: 'center',
+            color: 'white',
+            fontSize: { xs: '1rem', sm: '1rem', md: '1.8rem' },
+            lineHeight: '1.5', // Set line height for equal spacing
+            margin: '0',       // Remove margin
+            padding: '0',      // Remove padding
+            flex: 1,
+            justifyContent: 'space-between',
+            position:'relative',top:'40px'
+          }}
+        >
+          Ali Raza
+        </Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+
+  <Grid item>
+    <Card
+      sx={{
+        width: 300,
+        height: 240,
+        mt: 7,
+        backgroundColor: '#AF0B0A',
+        color: 'white',
+        boxShadow: `0px 8px 16px rgba(175, 11, 10, 0.5)`,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <CardContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%',
+          padding: '0', // Remove padding
+        }}
+      >
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'white',
+            fontSize: '1.2rem',
+            lineHeight: '1.5', // Set line height for equal spacing
+            margin: '0',       // Remove margin
+            textAlign: 'left',
+            display: 'flex',
+            alignItems: 'center',
+            flex: 1,
+          }}
+        >
+       <CardContent
   sx={{
-    textAlign: 'center',
-    color: 'white',
-    fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem' }, // Responsive font sizes
-    mt:'1.5rem'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100%',
+    padding: '16px 0', // Add vertical padding to move down the content
   }}
 >
-Haider Ali
-</Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item>
-      <Card sx={{ width: 300, height: 240, mt: 7,backgroundColor:'#AF0B0A', color: 'white',boxShadow: `0px 8px 16px rgba(175, 11, 10, 0.5)`}}>
-    
-          <CardContent>
+  <Typography
+    variant="body2"
+    sx={{
+      color: 'white',
+      fontSize: '1.2rem',
+      lineHeight: '1.5', // Set line height for equal spacing
+      margin: '0',       // Remove margin
+      textAlign: 'left', // Align text to the left
+      display: 'flex',    // Use flex to align items
+      justifyContent: 'space-between', // Distribute space evenly
+      alignItems: 'center', // Align items vertically centered
+    }}
+  >
+    <FormatQuoteIcon sx={{ fontSize: '3rem', transform: 'rotate(180deg)',position:'relative',bottom:'64px' }} />
+    <span style={{ flex: 1, textAlign: 'center', marginTop: '10px' }}>
+      The site is intuitive and streamlined, making it easy to contribute. A fantastic way to make a positive impact!
+    </span>
+    <FormatQuoteIcon sx={{ fontSize: '3rem',position:'relative',top:'64px' }} />
+  </Typography>
+  
+  <Typography
+    sx={{
+      textAlign: 'center',
+      color: 'white',
+      fontSize: { xs: '1rem', sm: '1rem', md: '1.8rem' },
+      lineHeight: '1.5', // Set line height for equal spacing
+      margin: '0',       // Remove margin
+      padding: '0',      // Remove padding
+      flex: 1,
+      position:'relative',top:'12px',
+    }}
+  >
+    Haider Ali
+  </Typography>
+</CardContent>
+
+
+        </Typography>
         
-            <Typography variant="body2" sx={{ color: 'white', fontSize: '1.2rem' , padding: '2px' }}>
-            <FormatQuoteIcon sx={{ fontSize: '3rem', ml: 1, transform: 'rotate(180deg)' }} />This service is efficient and simple to use, making the act of giving effortless. A great tool for those who want to make a difference!<FormatQuoteIcon sx={{ fontSize: '3rem', mr: 1 }} /> 
-            </Typography>
-            <Typography
+      </CardContent>
+    </Card>
+  </Grid>
+
+  <Grid item>
+    <Card
+      sx={{
+        width: 300,
+        height: 240,
+        mt: 7,
+        backgroundColor: '#AF0B0A',
+        color: 'white',
+        boxShadow: `0px 8px 16px rgba(175, 11, 10, 0.5)`,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <CardContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%',
+          padding: '0', // Remove padding
+        }}
+      >
+       <Typography
+  variant="body2"
   sx={{
-    textAlign: 'center',
     color: 'white',
-    fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem' } ,// Responsive font sizes
- 
+    fontSize: '1.2rem',
+    lineHeight: '1.5', // Set line height for equal spacing
+    margin: '0',       // Remove margin
+    textAlign: 'left',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 1,
   }}
 >
-Shazima
+  {/* Adjust position to move the first icon down */}
+  <FormatQuoteIcon 
+    sx={{ 
+      fontSize: '3rem', 
+      ml: 1, 
+      transform: 'rotate(180deg)', 
+      position: 'relative', 
+      justifyContent: 'space-between',
+      bottom: '40px',  // Move icon down
+    }} 
+  />
+  
+  <span style={{  flex: 1,position:'relative',top:'30px'
+   }}>
+   A well-designed site that makes donating simple, perfect for anyone looking to make a difference.
+  </span>
+  
+  {/* Adjust position to move the second icon down */}
+  <FormatQuoteIcon 
+    sx={{ 
+      fontSize: '3rem', 
+      mr: 1, 
+      position: 'relative', 
+      top: '90px',  // Move icon down
+    }} 
+  />
 </Typography>
 
-          </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
+        <Typography
+          sx={{
+            textAlign: 'center',
+            color: 'white',
+            fontSize: { xs: '2rem', sm: '2rem', md: '1.8rem' },
+            lineHeight: '1.5', // Set line height for equal spacing
+            margin: '0',       // Remove margin
+            padding: '0',      // Remove padding
+            flex: 1,
+            position:'relative',top:'39px',
+          }}
+        >
+          Shazima
+        </Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+</Grid>
+
+
+
+
 
     </section>
   );

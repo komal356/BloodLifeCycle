@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Faq from 'react-faq-component';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote'; // Import the icon
 
 const App1 = () => {
   const [clickedIndex, setClickedIndex] = useState(null); // State to track which question was clicked
@@ -41,7 +42,7 @@ const App1 = () => {
             }}
             onClick={() => setClickedIndex(0)} // Sets clickedIndex to 0 when clicked
           >
-            Who can donate blood?
+            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> Who can donate blood?
           </Box>
         ),
         content: `Most people who are in good health, weigh at least 110 pounds, and are at least 17 years old can donate blood. Some states allow 16-year-olds to donate with parental consent.`
@@ -63,7 +64,7 @@ const App1 = () => {
             }}
             onClick={() => setClickedIndex(1)} // Sets clickedIndex to 1 when clicked
           >
-            How often can I donate blood?
+            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> How often can I donate blood?
           </Box>
         ),
         content: `You can donate whole blood every 56 days, up to six times a year. However, the frequency can vary for different types of donations such as platelets or plasma.`
@@ -85,7 +86,7 @@ const App1 = () => {
             }}
             onClick={() => setClickedIndex(2)} // Sets clickedIndex to 2 when clicked
           >
-            Is blood donation safe?
+            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> Is blood donation safe?
           </Box>
         ),
         content: `Yes, donating blood is safe. The equipment used is sterile and disposable, ensuring that you cannot contract any disease from donating blood.`
@@ -107,7 +108,7 @@ const App1 = () => {
             }}
             onClick={() => setClickedIndex(3)} // Sets clickedIndex to 3 when clicked
           >
-            What should I do before donating blood?
+            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> What should I do before donating blood?
           </Box>
         ),
         content: `Before donating blood, eat a healthy meal and drink plenty of water. Avoid fatty foods as they can affect the tests performed on your blood. Make sure you bring a valid ID.`
@@ -129,7 +130,7 @@ const App1 = () => {
             }}
             onClick={() => setClickedIndex(4)} // Sets clickedIndex to 4 when clicked
           >
-            How long does the blood donation process take?
+            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> How long does the blood donation process take?
           </Box>
         ),
         content: `The entire process, from registration to resting after donation, usually takes about an hour. The actual blood donation takes about 8-10 minutes.`
@@ -151,7 +152,7 @@ const App1 = () => {
             }}
             onClick={() => setClickedIndex(5)} // Sets clickedIndex to 5 when clicked
           >
-            What happens after I donate blood?
+            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> What happens after I donate blood?
           </Box>
         ),
         content: `After donating blood, you will be asked to rest for a few minutes and have some refreshments. It's important to drink plenty of fluids and avoid heavy exercise for the rest of the day.`
@@ -168,8 +169,6 @@ const App1 = () => {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-       
-
       }}
     >
       <Box

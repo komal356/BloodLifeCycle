@@ -24,16 +24,21 @@ const AppFooter = () => {
         <Grid container item xs={12} sm={6} md={6} spacing={3} justifyContent="flex-end" sx={{ minHeight: '300px' }} >
 
           <Grid item xs={8} sm={4} md={6} sx={{ mt: 1, pl: '20px' }}>
-            <Typography
-              variant="h6"
-              gutterBottom
-              sx={{ mt: 3,fontSize: { xs: '1.5rem', sm: '1.50rem', md: '2rem' } }} // Increase font size
-            >
-              Quick Links
-            </Typography>
+          <Typography
+  variant="h6"
+  gutterBottom
+  sx={{
+    mt: 3,
+    fontSize: { xs: '1.5rem', sm: '1.5rem', md: '2rem' },
+    position:'relative',right:'54px',
+  }}
+>
+  Quick Links
+</Typography>
+
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' } }} // Increase body text size
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' ,    position:'relative',right:'50px',} }} // Increase body text size
             >
               <a href="/Navbar" underline="hover">
         
@@ -43,7 +48,7 @@ const AppFooter = () => {
             </Typography>
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' } }}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' ,    position:'relative',right:'50px',} }}
             >
               <a href="./process.jsx" underline="hover">
                 Donation Process
@@ -51,7 +56,7 @@ const AppFooter = () => {
             </Typography>
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' } }}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' ,    position:'relative',right:'50px',} }}
             >
               <a href="/donate.jsx" underline="hover">
                 Donate Blood
@@ -59,7 +64,7 @@ const AppFooter = () => {
             </Typography>
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' } }}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' ,    position:'relative',right:'50px',} }}
             >
               <a href="/Acheivement.jsx" underline="hover">
 
@@ -68,7 +73,7 @@ const AppFooter = () => {
             </Typography>
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' } }}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem',    position:'relative',right:'50px', } }}
             >
               <a href="#" underline="hover">
                 Feedback
@@ -76,7 +81,7 @@ const AppFooter = () => {
             </Typography>
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' } }}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem',    position:'relative',right:'50px', } }}
             >
               <a href="#" underline="hover">
 
@@ -85,7 +90,7 @@ const AppFooter = () => {
             </Typography>
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' } }}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1rem' ,    position:'relative',right:'50px',} }}
             >
               <a href="#" underline="hover">
 
@@ -112,7 +117,7 @@ const AppFooter = () => {
               variant="body2"
               sx={{ display: 'flex', alignItems: 'center', fontSize: { xs: '0.75rem', sm: '0.95rem', md: '1.2rem' } }} // Increase body text size
             >
-              <MailOutlineIcon sx={{ mr: 1 }} /> BloodLifeCycle@gmail.com
+              <MailOutlineIcon sx={{ mr: 1 }} /> bloodlifecycle@gmail.com
             </Typography>
           </Grid>
         </Grid>
