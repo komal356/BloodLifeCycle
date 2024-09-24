@@ -40,7 +40,7 @@ const Donor = () => {
   const validate = () => {
     const errors = {};
     const phoneRegex = /^(?:\+92|0092|0)3\d{9}$/; // Accepts numbers starting with +92, 0092, or 03 and followed by 9 digits
-    const emailRegex = /^[\w-]+@gmail\.com$/;
+    const emailRegex = /\S+@\S+\.\S+/;
     const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
     // First Name and Last Name Validation
@@ -50,7 +50,7 @@ const Donor = () => {
       errors.FirstName = 'First Name must be at most 20 characters long';
     }
     
-    if (formData.lastName.length < 2) {
+    if (formData.lastName.length <= 0) {
       errors.lastName = 'Last Name must be at least 2 characters long';
     } else if (formData.lastName.length > 20) {
       errors.lastName = 'Last Name must be at most 20 characters long';
@@ -172,6 +172,7 @@ const Donor = () => {
         variant="contained"
         onClick={handleOpenDialog}
         sx={{
+          // width:'110%',
           bgcolor: '#AF0B0A',
           color: 'white',
           '&:hover': {
@@ -179,7 +180,7 @@ const Donor = () => {
           },
         }}
       >
-        Donor
+       Donor
       </Button>
 
       <Dialog
@@ -218,62 +219,60 @@ const Donor = () => {
               Blood Donor Information
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <TextField
-                label="First Name"
-                name="FirstName"
-                variant="outlined"
-                value={formData.FirstName}
-                onChange={handleChange}
-                required
-                error={!!formErrors.FirstName}
-                helperText={formErrors.FirstName}
-                InputLabelProps={{
-                  style: { color: 'black' },
-                 
-                }}
-              
-                sx={{
+  <TextField
+    label="First Name"
+    name="FirstName"
+    variant="outlined"
+    value={formData.FirstName}
+    onChange={handleChange}
+    required
+    error={!!formErrors.FirstName}
+    helperText={formErrors.FirstName}
+    InputLabelProps={{
+      style: { color: 'black' },
+    }}
+    sx={{
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'black',
+        },
+        '&:hover fieldset': {
+          borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: 'black',
+        },
+      },
+    }}
+  />
+  
+  <TextField
+    label="Last Name" 
+    name="lastName"
+    variant="outlined"
+    value={formData.lastName}
+    onChange={handleChange}
+    error={!!formErrors.lastName}
+    helperText={formErrors.lastName} 
+    InputLabelProps={{
+      style: { color: 'black' },
+    }}
+    sx={{
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'black',
+        },
+        '&:hover fieldset': {
+          borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: 'black',
+        },
+      },
+    }}
+  />
+</Box>
 
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: 'black',
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: 'black',
-                    },
-                  },
-                }}
-              />
-              <TextField
-                label="Last Name"
-                name="lastName"
-                variant="outlined"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-                error={!!formErrors.lastName}
-                helperText={formErrors.lastName}
-                InputLabelProps={{
-                  style: { color: 'black' },
-                }}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: 'black',
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: 'black',
-                    },
-                  },
-                }}
-              />
-            </Box>
             <TextField
               label="Contact Number"
               name="contactNo"
@@ -454,131 +453,127 @@ const Donor = () => {
                 },
               }}
             />
-            <FormControl variant="outlined" required sx={{ width: '100%' }}>
-              <InputLabel
-                htmlFor="donateBefore"
-                sx={{
-                  color: 'black',
-                  '&.Mui-focused': {
-                    color: 'black',
-                  },
-                  '&.MuiInputLabel-shrink': {
-                    color: 'black',
-                  },
-                }}
-              >
-                Have you donated before?
-              </InputLabel>
-              <Select
-  name="donateBefore"
-  value={formData.donateBefore}
-  onChange={handleChange}
-  label="Have you donated before?"
-  required
-  sx={{
-    '& .MuiSelect-select': {
-     
-      color: 'black', // Text color
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'black', // Black outline color by default
-    },
-    '&:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'black', // Black outline color on hover
-    },
-    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'black', // Outline color when focused
-    },
-    '&.MuiSelect-select:not(.MuiSelect-select):focus': {
-      color: 'black', // Text color when focused
-    },
-  }}
->
-  <MenuItem value="">
- 
-  </MenuItem>
-  <MenuItem value="yes">Yes</MenuItem>
-  <MenuItem value="no">No</MenuItem>
-</Select>
+           <FormControl variant="outlined" required sx={{ width: '100%' }}>
+  <InputLabel
+    htmlFor="donateBefore"
+    sx={{
+      color: 'black',
+      '&.Mui-focused': {
+        color: 'black',
+      },
+      '&.MuiInputLabel-shrink': {
+        color: 'black',
+      },
+    }}
+  >
+    Have you donated before?
+  </InputLabel>
+  <Select
+    name="donateBefore"
+    value={formData.donateBefore}
+    onChange={handleChange}
+    label="Have you donated before?"
+    required
+    sx={{
+      '& .MuiSelect-select': {
+        color: 'black', // Text color
+      },
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'black', // Black outline color by default
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'black', // Black outline color on hover
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'black', // Outline color when focused
+      },
+      '&.MuiSelect-select:not(.MuiSelect-select):focus': {
+        color: 'black', // Text color when focused
+      },
+    }}
+  >
+    <MenuItem value="">
+      {/* Empty value for default */}
+    </MenuItem>
+    <MenuItem value="yes">Yes</MenuItem>
+    <MenuItem value="no">No</MenuItem>
+  </Select>
+</FormControl>
 
+{/* Conditional display of Last Donation Date */}
+{formData.donateBefore === 'yes' && (
+  <TextField
+    label="Last Donation Date"
+    name="lastDonationDate"
+    type="date"
+    variant="outlined"
+    value={formData.lastDonationDate}
+    onChange={handleChange}
+    InputLabelProps={{
+      shrink: true,
+    }}
+    required
+    error={!!formErrors.lastDonationDate} 
+    helperText={formErrors.lastDonationDate}
+    inputProps={{
+      max: new Date().toISOString().split('T')[0], // Prevent future dates
+    }}
+    sx={{
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'black', // Border color
+        },
+        '&:hover fieldset': {
+          borderColor: 'black', // Border color on hover
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: 'black', // Border color when focused
+        },
+        '& input': {
+          color: 'black', // Text color when entering data
+        },
+        '& input:focus': {
+          color: 'black', // Text color when focused
+        },
+      },
+      '& .MuiInputLabel-root': {
+        color: 'black', // Default label color
+        '&.Mui-focused': {
+          color: 'black', // Label color when focused
+        },
+        '&.MuiInputLabel-shrink': {
+          color: 'black', // Label color when shrunk
+        },
+      },
+    }}
+  />
+)}
 
-            </FormControl>
-            {formData.donateBefore === 'yes' && (
-            <TextField
-  label="Last Donation Date"
-  name="lastDonationDate"
-  type="date"
+{/* Medication field now always visible */}
+<TextField
+  label="Medication"
+  name="medication"
   variant="outlined"
-  value={formData.bloodNeededDate}
+  value={formData.medication}
   onChange={handleChange}
   InputLabelProps={{
-    shrink: true,
-  }}
-  required
-  error={!!formErrors.bloodNeededDate}
-  helperText={formErrors.bloodNeededDate}
-  inputProps={{
-    min: new Date().toISOString().split('T')[0], // Ensure the date is not in the past
+    style: { color: 'black' },
   }}
   sx={{
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'black', // Border color
+        borderColor: 'black',
       },
       '&:hover fieldset': {
-        borderColor: 'black', // Border color on hover
+        borderColor: 'black',
       },
       '&.Mui-focused fieldset': {
-        borderColor: 'black', // Border color when focused
-      },
-      '& input': {
-        color: 'black', // Text color when entering data
-      },
-      '& input:focus': {
-        color: 'black', // Text color when focused
-      },
-    },
-    '& .MuiInputLabel-root': {
-      color: 'black', // Default label color
-      '&.Mui-focused': {
-        color: 'black', // Label color when focused
-      },
-      '&.MuiInputLabel-shrink': {
-        color: 'black', // Label color when shrunk
+        borderColor: 'black',
       },
     },
   }}
 />
 
-
-            )}
-            {formData.donateBefore === 'yes' && (
-              <TextField
-                label="Medication"
-                name="medication"
-                variant="outlined"
-                value={formData.medication}
-                onChange={handleChange}
-                error={!!formErrors.medication}
-                helperText={formErrors.medication}
-                InputLabelProps={{
-                  style: { color: 'black' },
-                }}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: 'black',
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: 'black',
-                    },
-                  },
-                }}
-              />
-            )}
             <TextField
               label="Emergency Contact Number"
               name="emergencyContactNo"
