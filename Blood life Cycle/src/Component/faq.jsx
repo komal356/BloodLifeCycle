@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Faq from 'react-faq-component';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote'; // Import the icon
 
 const App1 = () => {
   const [clickedIndex, setClickedIndex] = useState(null); // State to track which question was clicked
@@ -36,13 +35,12 @@ const App1 = () => {
               cursor: 'pointer',
               color: clickedIndex === 0 ? '#AF0B0A' : 'inherit', // Turns red when clickedIndex matches
               '&:hover': {
-                color: '#AF0B0A', // Changes color on hover
                 backgroundColor: 'rgba(175, 11, 10, 0.1)' // Light background on hover
               }
             }}
-            onClick={() => setClickedIndex(0)} // Sets clickedIndex to 0 when clicked
+            onClick={() => setClickedIndex(clickedIndex === 0 ? null : 0)} // Toggles the clickedIndex
           >
-            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> Who can donate blood?
+            Who can donate blood?
           </Box>
         ),
         content: `Most people who are in good health, weigh at least 110 pounds, and are at least 17 years old can donate blood. Some states allow 16-year-olds to donate with parental consent.`
@@ -58,13 +56,12 @@ const App1 = () => {
               cursor: 'pointer',
               color: clickedIndex === 1 ? '#AF0B0A' : 'inherit', // Turns red when clickedIndex matches
               '&:hover': {
-                color: '#AF0B0A', // Changes color on hover
                 backgroundColor: 'rgba(175, 11, 10, 0.1)' // Light background on hover
               }
             }}
-            onClick={() => setClickedIndex(1)} // Sets clickedIndex to 1 when clicked
+            onClick={() => setClickedIndex(clickedIndex === 1 ? null : 1)} // Toggles the clickedIndex
           >
-            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> How often can I donate blood?
+            How often can I donate blood?
           </Box>
         ),
         content: `You can donate whole blood every 56 days, up to six times a year. However, the frequency can vary for different types of donations such as platelets or plasma.`
@@ -80,13 +77,12 @@ const App1 = () => {
               cursor: 'pointer',
               color: clickedIndex === 2 ? '#AF0B0A' : 'inherit', // Turns red when clickedIndex matches
               '&:hover': {
-                color: '#AF0B0A', // Changes color on hover
                 backgroundColor: 'rgba(175, 11, 10, 0.1)' // Light background on hover
               }
             }}
-            onClick={() => setClickedIndex(2)} // Sets clickedIndex to 2 when clicked
+            onClick={() => setClickedIndex(clickedIndex === 2 ? null : 2)} // Toggles the clickedIndex
           >
-            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> Is blood donation safe?
+            Is blood donation safe?
           </Box>
         ),
         content: `Yes, donating blood is safe. The equipment used is sterile and disposable, ensuring that you cannot contract any disease from donating blood.`
@@ -102,13 +98,12 @@ const App1 = () => {
               cursor: 'pointer',
               color: clickedIndex === 3 ? '#AF0B0A' : 'inherit', // Turns red when clickedIndex matches
               '&:hover': {
-                color: '#AF0B0A', // Changes color on hover
                 backgroundColor: 'rgba(175, 11, 10, 0.1)' // Light background on hover
               }
             }}
-            onClick={() => setClickedIndex(3)} // Sets clickedIndex to 3 when clicked
+            onClick={() => setClickedIndex(clickedIndex === 3 ? null : 3)} // Toggles the clickedIndex
           >
-            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> What should I do before donating blood?
+            What should I do before donating blood?
           </Box>
         ),
         content: `Before donating blood, eat a healthy meal and drink plenty of water. Avoid fatty foods as they can affect the tests performed on your blood. Make sure you bring a valid ID.`
@@ -124,13 +119,12 @@ const App1 = () => {
               cursor: 'pointer',
               color: clickedIndex === 4 ? '#AF0B0A' : 'inherit', // Turns red when clickedIndex matches
               '&:hover': {
-                color: '#AF0B0A', // Changes color on hover
                 backgroundColor: 'rgba(175, 11, 10, 0.1)' // Light background on hover
               }
             }}
-            onClick={() => setClickedIndex(4)} // Sets clickedIndex to 4 when clicked
+            onClick={() => setClickedIndex(clickedIndex === 4 ? null : 4)} // Toggles the clickedIndex
           >
-            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> How long does the blood donation process take?
+            How long does the blood donation process take?
           </Box>
         ),
         content: `The entire process, from registration to resting after donation, usually takes about an hour. The actual blood donation takes about 8-10 minutes.`
@@ -146,18 +140,26 @@ const App1 = () => {
               cursor: 'pointer',
               color: clickedIndex === 5 ? '#AF0B0A' : 'inherit', // Turns red when clickedIndex matches
               '&:hover': {
-                color: '#AF0B0A', // Changes color on hover
                 backgroundColor: 'rgba(175, 11, 10, 0.1)' // Light background on hover
               }
             }}
-            onClick={() => setClickedIndex(5)} // Sets clickedIndex to 5 when clicked
+            onClick={() => setClickedIndex(clickedIndex === 5 ? null : 5)} // Toggles the clickedIndex
           >
-            <FormatQuoteIcon sx={{ color: '#AF0B0A' }} /> What happens after I donate blood?
+            What happens after I donate blood?
           </Box>
         ),
         content: `After donating blood, you will be asked to rest for a few minutes and have some refreshments. It's important to drink plenty of fluids and avoid heavy exercise for the rest of the day.`
       }
     ]
+  };
+
+  const styles = {
+    bgColor: "transparent",
+    titleTextColor: "#AF0B0A", // Change title text color
+    rowTitleColor: "#AF0B0A", // Change question text color
+    rowContentColor: "black", // Change answer text color
+    arrowColor: "#AF0B0A", // Change dropdown icon color
+    // Add other styles as needed
   };
 
   return (
@@ -180,7 +182,7 @@ const App1 = () => {
           boxShadow: 1 // Optional: Add some shadow for better visual appeal
         }}
       >
-        <Faq data={data} />
+        <Faq data={data} styles={styles} />
       </Box>
     </Box>
   );

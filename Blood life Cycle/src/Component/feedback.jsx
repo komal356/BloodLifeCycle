@@ -74,7 +74,7 @@ export default function AppFeedback() {
             justifyContent: 'space-between',
             flex: 1,
              // Allow the text to flex and take up space
-             position:'relative',top:'20px',
+             position:'relative',top:'25px',
           }}
         >
           <FormatQuoteIcon sx={{ fontSize: '3rem', ml: 1, transform: 'rotate(180deg)',position:'relative',bottom:'66px' }} />
