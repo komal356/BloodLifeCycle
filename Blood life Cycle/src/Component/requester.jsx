@@ -803,11 +803,24 @@ const Requester = () => {
         </DialogActions>
       </Dialog>
 
-      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+      <Snackbar open={openSnackbar} 
+      autoHideDuration={6000}
+       onClose={handleCloseSnackbar}
+       anchorOrigin={{vertical:'top', horizontal: 'right'}}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}
+         sx={{ width: '100%',
+          backgroundColor:'white',
+          color:'black',
+          fontWeight:'bold',
+          border:'2px solid #AF0B0A',
+          borderRadius:'8px'
+
+
+          }}>
           {snackbarMessage}
         </Alert>
       </Snackbar>
+      
     </div>
   );
 };
