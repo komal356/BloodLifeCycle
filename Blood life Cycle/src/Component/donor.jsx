@@ -207,7 +207,7 @@ const Donor = () => {
               bgcolor: 'white',
               p: 3,
               borderRadius: 4,
-              boxShadow: 1,
+              boxShadow: 5,
               margin: 'auto',
             }}
             noValidate
@@ -229,8 +229,11 @@ const Donor = () => {
                 helperText={formErrors.FirstName}
                 InputLabelProps={{
                   style: { color: 'black' },
+                 
                 }}
+              
                 sx={{
+
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
                       borderColor: 'black',
@@ -604,9 +607,19 @@ const Donor = () => {
               }}
             />
             <DialogActions>
-              <Button onClick={handleCloseDialog} color="error">
-                Cancel
-              </Button>
+            <Button
+  onClick={handleCloseDialog}
+  sx={{
+    backgroundColor: '#AF0B0A', // Custom background color
+    color: 'white', // White text color
+    '&:hover': {
+      backgroundColor: '#8A0807', // Darker shade for hover effect
+    },
+  }}
+>
+  Cancel
+</Button>
+
               <Button
   type="submit"
   variant="contained"
