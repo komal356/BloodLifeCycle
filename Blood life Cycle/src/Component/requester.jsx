@@ -26,7 +26,6 @@ const Requester = () => {
     bloodGroup: '',
     address: '',
     dateOfBirth: '',
-    bloodRequired: '',
     unitsRequired: '',
     bloodNeededDate: '',
     hospitalName: '',
