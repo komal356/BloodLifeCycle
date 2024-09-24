@@ -82,9 +82,10 @@ const Requester = () => {
     }
     if (!formData.bloodNeededDate) {
       errors.bloodNeededDate = 'Blood Needed Date is required.';
-    } else if (new Date(formData.bloodNeededDate) <= new Date()) {
-      errors.bloodNeededDate = 'Blood Needed Date must be in the future.';
+    } else if (new Date(formData.bloodNeededDate).getTime() < new Date().getTime()) {
+      errors.bloodNeededDate = 'Blood Needed Date must be today or in the future.';
     }
+    
     if (!formData.hospitalName) {
       errors.hospitalName = 'Hospital Name is required.';
     }
@@ -287,7 +288,7 @@ const Requester = () => {
   }}
 >
   <MenuItem value="">
-    <em>None</em>
+ 
   </MenuItem>
   <MenuItem value="male">Male</MenuItem>
   <MenuItem value="female">Female</MenuItem>
@@ -406,7 +407,7 @@ const Requester = () => {
     }}
   >
                 <MenuItem value="">
-                  <em>None</em>
+               
                 </MenuItem>
                 <MenuItem value="A+">A+</MenuItem>
                 <MenuItem value="A-">A-</MenuItem>
