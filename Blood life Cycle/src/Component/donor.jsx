@@ -49,10 +49,7 @@ const Donor = () => {
     } else if (formData.FirstName.length > 20) {
       errors.FirstName = 'First Name must be at most 20 characters long';
     }
-    
-    if (formData.lastName.length <= 0) {
-      errors.lastName = 'Last Name must be at least 2 characters long';
-    } else if (formData.lastName.length > 20) {
+    else if (formData.lastName.length > 20) {
       errors.lastName = 'Last Name must be at most 20 characters long';
     }
 

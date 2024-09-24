@@ -15,7 +15,7 @@ const PersonalDetailSchema = new mongoose.Schema({
     contactNo: {
         type: String,
         required: [true, 'Contact number is required'],
-        match: [/^\d{10}$/, 'Contact number must be 11 digits long'],
+       
     },
     gender: {
         type: String,
@@ -62,7 +62,7 @@ const PersonalDetailSchema = new mongoose.Schema({
     emergencyContactNo: {
         type: String,
         required: [true, 'Emergency contact number is required'],
-        match: [/^\d{10}$/, 'Emergency contact number must be 11 digits long'],
+       
     },
 });
 

@@ -121,7 +121,7 @@ const Requester = () => {
     const errors = validate();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-      setSnackbarMessage('Please correct the errors in the form.');
+      setSnackbarMessage('Please ensure you fill in the correct form.');
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
       return;
