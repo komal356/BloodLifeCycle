@@ -46,28 +46,34 @@ const Donor = () => {
     // First Name and Last Name Validation
     if (formData.FirstName.length < 2) {
       errors.FirstName = 'First Name must be at least 2 characters long';
-    } else if (formData.FirstName.length > 20) {
-      errors.FirstName = 'First Name must be at most 20 characters long';
-    }
-    else if (formData.lastName.length > 20) {
-      errors.lastName = 'Last Name must be at most 20 characters long';
-    }
+    } 
 
     // Contact Number Validation
     if (!phoneRegex.test(formData.contactNo)) errors.contactNo = 'Contact Number must start with +92, 0092, or 03 and be followed by 9 digits';
 
     // Email Validation
-    if (!emailRegex.test(formData.email)) errors.email = 'Email must be a valid @gmail.com address';
+    if (!emailRegex.test(formData.email)) errors.email = 'Email must be a valid';
 
     // Last Donation Date Validation
-    if (formData.lastDonationDate && formData.lastDonationDate > today) {
-      errors.lastDonationDate = 'Last Donation Date cannot be in the future';
+    if (formData.lastDonationDate && formData.lastDonationDate < today) {
+      errors.lastDonationDate = 'Last Donation Date cannot be in the Past & currunt';
+    } 
+    
+    // Address Validation
+    if (formData.address.length < 5) {
+      errors.address = 'Address must be at least 5 characters long';
     }
   
-    // Medication Field Validation
-    if (formData.donateBefore === 'yes' && !formData.medication) {
-      errors.medication = 'Medication field is required if you have donated before';
-    }
+    // // Medication Field Validation
+    // if (formData.donateBefore === 'yes' && !formData.medication) {
+    //   errors.medication = 'Medication field is required if you have donated before';
+    // }
+  
+
+     // Blood Group Validation
+  if (!formData.bloodGroup) {
+    errors.bloodGroup = 'Blood Group is required';
+  }  
   
     // Check if last donation date is filled when donateBefore is yes
     if (formData.donateBefore === 'yes' && !formData.lastDonationDate) {

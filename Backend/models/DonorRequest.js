@@ -5,7 +5,7 @@ const PersonalDetailSchema = new mongoose.Schema({
         type: String,
         required: [true, 'First name is required'],
         minlength: [1, 'First name must be at least 1 character long'],
-        maxlength: [30, 'First name cannot exceed 50 characters'],
+        maxlength: [20, 'First Name must be at most 20 characters long'],
     },
     lastName: {
         type: String,
@@ -15,7 +15,7 @@ const PersonalDetailSchema = new mongoose.Schema({
     contactNo: {
         type: String,
         required: [true, 'Contact number is required'],
-       
+        match: [/^(?:\+92|0092|0)3\d{9}$/] // Accepts numbers starting with +92, 0092, or 03 and followed by 9 digits,
     },
     gender: {
         type: String,
@@ -62,7 +62,7 @@ const PersonalDetailSchema = new mongoose.Schema({
     emergencyContactNo: {
         type: String,
         required: [true, 'Emergency contact number is required'],
-       
+        match: [/^(?:\+92|0092|0)3\d{9}$/]
     },
 });
 
