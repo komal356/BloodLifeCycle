@@ -139,7 +139,7 @@ const AppFooter = () => {
                 color: 'white', // Text color
               }}
             >
-              ©2022 - BloodLifeCycle
+              ©2024 - BloodLifeCycle
             </Typography>
           </Box>
         </Grid>
