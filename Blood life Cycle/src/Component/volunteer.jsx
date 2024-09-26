@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 import JoinUs from './joinUs'
+
 const navigation = [
 
 ]

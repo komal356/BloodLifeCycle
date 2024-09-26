@@ -204,12 +204,13 @@ const Requester = () => {
         fullWidth
       >
         <DialogTitle>
-          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold',backgroundColor: '#AF0B0A',color: 'white',padding: '16px'}}>
             Blood Request Form
           </Typography>
         </DialogTitle>
 
         <DialogContent>
+        <br />
           <Box
             component="form"
             sx={{
@@ -226,9 +227,11 @@ const Requester = () => {
             autoComplete="off"
             onSubmit={handleSubmit}
           >
+           
             <Typography variant="h6" gutterBottom>
               Requester Information
             </Typography>
+            
             <TextField
               label="Patient Name"
               name="patientName"
