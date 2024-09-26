@@ -14,7 +14,7 @@ import {
   DialogContent,
   DialogActions,
   Snackbar,
-  Alert,
+  Alert
 } from '@mui/material';
 
 const Donor = () => {
@@ -37,52 +37,69 @@ const Donor = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   const [formErrors, setFormErrors] = useState({});
 
+
   const validate = () => {
     const errors = {};
     const phoneRegex = /^(?:\+92|0092|0)3\d{9}$/; // Accepts numbers starting with +92, 0092, or 03 and followed by 9 digits
     const emailRegex = /\S+@\S+\.\S+/;
     const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
-    // First Name and Last Name Validation
-    if (formData.FirstName.length < 2) {
-      errors.FirstName = 'First Name must be at least 2 characters long';
-    } 
+    // First Name Validation
+    if (!formData.FirstName || formData.FirstName.length < 2) {
+      errors.FirstName = 'First Name is required and must be at least 2 characters long';
+    }
+    
+    if (!formData.FirstName || formData.FirstName.length < 2) {
+      errors.FirstName = 'First Name is required and must be at least 2 characters long';
+    }
+    
+    if (formData.LastName && formData.LastName.length < 2) {
+      errors.LastName = 'Last Name must be at least 2 characters long';
+    }
+    
+    
 
     // Contact Number Validation
-    if (!phoneRegex.test(formData.contactNo)) errors.contactNo = 'Contact Number must start with +92, 0092, or 03 and be followed by 9 digits';
+    if (!formData.contactNo || !phoneRegex.test(formData.contactNo)) {
+      errors.contactNo = 'Contact Number is required and must start with +92, 0092, or 03 and be followed by 9 digits';
+    }
 
     // Email Validation
-    if (!emailRegex.test(formData.email)) errors.email = 'Email must be a valid';
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      errors.email = 'Valid Email is required';
+    }
 
-    // Last Donation Date Validation
-    if (formData.lastDonationDate && formData.lastDonationDate < today) {
-      errors.lastDonationDate = 'Last Donation Date cannot be in the Past & currunt';
-    } 
-    
+    // Gender Validation
+    if (!formData.gender) {
+      errors.gender = 'Gender is required';
+    }
+
+    // Blood Group Validation
+    if (!formData.bloodGroup) {
+      errors.bloodGroup = 'Blood Group is required';
+    }
+
     // Address Validation
-    if (formData.address.length < 5) {
-      errors.address = 'Address must be at least 5 characters long';
+    if (!formData.address) {
+      errors.address = 'Home Address is required';
     }
-  
-    // // Medication Field Validation
-    // if (formData.donateBefore === 'yes' && !formData.medication) {
-    //   errors.medication = 'Medication field is required if you have donated before';
-    // }
-  
 
-     // Blood Group Validation
-  if (!formData.bloodGroup) {
-    errors.bloodGroup = 'Blood Group is required';
-  }  
-  
-    // Check if last donation date is filled when donateBefore is yes
-    if (formData.donateBefore === 'yes' && !formData.lastDonationDate) {
-      errors.lastDonationDate = 'Last Donation Date is required if you have donated before';
+ // Last Donation Date Validation
+if (formData.donateBefore === 'yes') {
+  if (!formData.lastDonationDate) {
+    errors.lastDonationDate = 'Last Donation Date field is required if you have donated before';
+  } else if (new Date(formData.lastDonationDate) > today) {
+    errors.lastDonationDate = 'Last Donation Date cannot be in the future';
+  }
+}
+
+
+    // Emergency Contact Number Validation
+    if (!formData.emergencyContactNo || !phoneRegex.test(formData.emergencyContactNo)) {
+      errors.emergencyContactNo = 'Emergency Contact Number is required and must start with +92, 0092, or 03 and be followed by 9 digits';
     }
-    
-    if (!phoneRegex.test(formData.emergencyContactNo)) errors.emergencyContactNo = 'Emergency Contact Number must start with +92, 0092, or 03 and be followed by 9 digits';
+
     setFormErrors(errors);
-
     return Object.keys(errors).length === 0;
   };
 
@@ -115,6 +132,7 @@ const Donor = () => {
       setSnackbarSeverity('success');
       setOpenSnackbar(true);
       setOpenDialog(false);
+      
       setFormData({
         FirstName: '',
         lastName: '',
@@ -130,18 +148,25 @@ const Donor = () => {
       }); // Clear form data after successful submission
     } catch (error) {
       console.error('There was an error submitting the form:', error);
-
+    
       if (error.response) {
+        // Server responded with a status code that falls out of the range of 2xx
         setSnackbarMessage(`Failed to submit form: ${error.response.data.message || 'Server error'}`);
       } else if (error.request) {
+        // Request was made but no response was received
         setSnackbarMessage('Failed to submit form: No response from server.');
+      } else if (error.message.includes("Network Error")) {
+        // Handle network errors specifically
+        setSnackbarMessage('Failed to submit form: Network Error. Please check your internet connection.');
       } else {
+        // Handle other types of errors like validation, unexpected JS errors, etc.
         setSnackbarMessage(`Failed to submit form: ${error.message}`);
       }
-
+    
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     }
+    
   };
 
   const handleOpenDialog = () => {
@@ -175,7 +200,6 @@ const Donor = () => {
         variant="contained"
         onClick={handleOpenDialog}
         sx={{
-          // width:'110%',
           bgcolor: '#AF0B0A',
           color: 'white',
           '&:hover': {
@@ -183,25 +207,22 @@ const Donor = () => {
           },
         }}
       >
-       Donor
+        Donor
       </Button>
 
-      <Dialog
-        open={openDialog}
-        onClose={handleCloseDialog}
-        sx={{
-          '& .MuiPaper-root': {
-            borderRadius: '16px',
-          },
-        }}
-      >
-        <DialogTitle>
-          <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-            Blood Donation Form
-          </Typography>
-        </DialogTitle>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+      <DialogTitle
+  sx={{
+    backgroundColor: '#AF0B0A', // Red background color
+    color: 'white', // White text color for contrast
+    padding: '16px', // Optional: padding for better appearance
+  }}
+>
+  Blood Donation Form
+</DialogTitle>
 
-        <DialogContent>
+<DialogContent>
+  <br />
           <Box
             component="form"
             sx={{
@@ -222,60 +243,59 @@ const Donor = () => {
               Blood Donor Information
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
-  <TextField
-    label="First Name"
-    name="FirstName"
-    variant="outlined"
-    value={formData.FirstName}
-    onChange={handleChange}
-    required
-    error={!!formErrors.FirstName}
-    helperText={formErrors.FirstName}
-    InputLabelProps={{
-      style: { color: 'black' },
-    }}
-    sx={{
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: 'black',
-        },
-        '&:hover fieldset': {
-          borderColor: 'black',
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: 'black',
-        },
+              <TextField
+                label="First Name"
+                name="FirstName"
+                variant="outlined"
+                value={formData.FirstName}
+                onChange={handleChange}
+                required
+                error={!!formErrors.FirstName}
+                helperText={formErrors.FirstName}
+                InputLabelProps={{
+                  style: { color: 'black' },
+                }}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'black',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'black',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'black',
+                    },
+                  },
+                }}
+              />
+              <TextField
+  label="Last Name"
+  name="lastName"
+  variant="outlined"
+  value={formData.lastName}
+  onChange={handleChange}
+  error={!!formErrors.lastName}
+  helperText={formErrors.lastName}
+  InputLabelProps={{
+    style: { color: 'black' },
+  }}
+  sx={{
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'black',
       },
-    }}
-  />
-  
-  <TextField
-    label="Last Name" 
-    name="lastName"
-    variant="outlined"
-    value={formData.lastName}
-    onChange={handleChange}
-    error={!!formErrors.lastName}
-    helperText={formErrors.lastName} 
-    InputLabelProps={{
-      style: { color: 'black' },
-    }}
-    sx={{
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: 'black',
-        },
-        '&:hover fieldset': {
-          borderColor: 'black',
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: 'black',
-        },
+      '&:hover fieldset': {
+        borderColor: 'black',
       },
-    }}
-  />
-</Box>
+      '&.Mui-focused fieldset': {
+        borderColor: 'black',
+      },
+    },
+  }}
+/>
 
+            </Box>
             <TextField
               label="Contact Number"
               name="contactNo"
@@ -285,8 +305,7 @@ const Donor = () => {
               onChange={handleChange}
               required
               error={!!formErrors.contactNo}
-              helperText={formErrors.contactNo}
-              InputLabelProps={{
+              helperText={formErrors.contactNo} InputLabelProps={{
                 style: { color: 'black' },
               }}
               sx={{
@@ -303,55 +322,55 @@ const Donor = () => {
                 },
               }}
             />
-            <FormControl variant="outlined" required sx={{ width: '100%' }}>
-              <InputLabel
-                htmlFor="gender"
-                sx={{
-                  color: 'black',
-                  '&.Mui-focused': {
-                    color: 'black',
-                  },
-                  '&.MuiInputLabel-shrink': {
-                    color: 'black',
-                  },
-                }}
-              >
-                Gender
-              </InputLabel>
-              <Select
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                label="Gender"
-                required
-                error={!!formErrors.gender}
-                sx={{
-                  '& .MuiSelect-select': {
-                   
-                    color: 'black', // Text color
-                  },
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'black', // Black outline color by default
-                  },
-                  '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'black', // Black outline color on hover
-                  },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'black', // Outline color when focused
-                  },
-                  '&.MuiSelect-select:not(.MuiSelect-select):focus': {
-                    color: 'black', // Text color when focused
-                  },
-                }}
-              >
-                <MenuItem value="">
-             
-                </MenuItem>
-                <MenuItem value="male">Male</MenuItem>
-                <MenuItem value="female">Female</MenuItem>
-                <MenuItem value="other">Other</MenuItem>
-              </Select>
-            </FormControl>
+           
+           <FormControl variant="outlined" required>
+  <InputLabel
+    sx={{
+      color: 'black', // Default color
+      '&.Mui-focused': {
+        color: 'black', // Color when focused
+      },
+      '&.MuiInputLabel-shrink': {
+        color: 'black', // Color when label is shrunk (used when there's a value in the input)
+      },
+    }}
+  >
+    Gender
+  </InputLabel>
+  <Select
+    name="gender"
+    value={formData.gender}
+    onChange={handleChange}
+    label="Gender"
+    error={!!formErrors.gender}
+    sx={{
+      '& .MuiSelect-select': {
+        color: 'black', // Default text color
+      },
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'black', // Default border color
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'black', // Border color on hover
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'black', // Border color when focused
+      },
+      '&.Mui-focused .MuiSelect-select': {
+        color: 'black', // Text color when focused
+      },
+    }}
+  >
+    <MenuItem value="">
+      
+    </MenuItem>
+    <MenuItem value="male">Male</MenuItem>
+    <MenuItem value="female">Female</MenuItem>
+    <MenuItem value="other">Other</MenuItem>
+  </Select>
+  {formErrors.gender && <Typography color="error">{formErrors.gender}</Typography>}
+</FormControl>
+
             <TextField
               label="Email"
               name="email"
@@ -379,30 +398,28 @@ const Donor = () => {
                 },
               }}
             />
-            <FormControl variant="outlined" required sx={{ width: '100%' }}>
-              <InputLabel
-                htmlFor="bloodGroup"
-                sx={{
-                  color: 'black',
-                  '&.Mui-focused': {
-                    color: 'black',
-                  },
-                  '&.MuiInputLabel-shrink': {
-                    color: 'black',
-                  },
-                }}
-              >
-                Blood Group
-              </InputLabel>
-              <Select
-    id="bloodGroup"
+           <FormControl variant="outlined" required>
+  <InputLabel
+    sx={{
+      color: 'black', // Default color
+      '&.Mui-focused': {
+        color: 'black', // Color when focused
+      },
+      '&.MuiInputLabel-shrink': {
+        color: 'black', // Color when the label is shrunk
+      },
+    }}
+  >
+    Blood Group
+  </InputLabel>
+  <Select
     name="bloodGroup"
     value={formData.bloodGroup}
     onChange={handleChange}
     label="Blood Group"
+    error={!!formErrors.bloodGroup}
     sx={{
       '& .MuiSelect-select': {
-       
         color: 'black', // Text color
       },
       '& .MuiOutlinedInput-notchedOutline': {
@@ -419,26 +436,29 @@ const Donor = () => {
       },
     }}
   >
-                <MenuItem value="">
-                
-                </MenuItem>
-                <MenuItem value="A+">A+</MenuItem>
-                <MenuItem value="A-">A-</MenuItem>
-                <MenuItem value="B+">B+</MenuItem>
-                <MenuItem value="B-">B-</MenuItem>
-                <MenuItem value="O+">O+</MenuItem>
-                <MenuItem value="O-">O-</MenuItem>
-                <MenuItem value="AB+">AB+</MenuItem>
-                <MenuItem value="AB-">AB-</MenuItem>
-              </Select>
-            </FormControl>
+    <MenuItem value="A+">A+</MenuItem>
+    <MenuItem value="A-">A-</MenuItem>
+    <MenuItem value="B+">B+</MenuItem>
+    <MenuItem value="B-">B-</MenuItem>
+    <MenuItem value="O+">O+</MenuItem>
+    <MenuItem value="O-">O-</MenuItem>
+    <MenuItem value="AB+">AB+</MenuItem>
+    <MenuItem value="AB-">AB-</MenuItem>
+  </Select>
+  {formErrors.bloodGroup && <Typography color="error">{formErrors.bloodGroup}</Typography>}
+</FormControl>
+
             <TextField
-              label="Address"
+              label="Home Address"
               name="address"
               variant="outlined"
               value={formData.address}
               onChange={handleChange}
+              multiline
+              rows={2}
               required
+              error={!!formErrors.address}
+              helperText={formErrors.address}
               InputLabelProps={{
                 style: { color: 'black' },
               }}
@@ -456,7 +476,7 @@ const Donor = () => {
                 },
               }}
             />
-           <FormControl variant="outlined" required sx={{ width: '100%' }}>
+                    <FormControl variant="outlined" required sx={{ width: '100%' }}>
   <InputLabel
     htmlFor="donateBefore"
     sx={{
@@ -552,31 +572,35 @@ const Donor = () => {
   />
 )}
 
-{/* Medication field now always visible */}
-<TextField
-  label="Medication"
-  name="medication"
-  variant="outlined"
-  value={formData.medication}
-  onChange={handleChange}
-  InputLabelProps={{
-    style: { color: 'black' },
-  }}
-  sx={{
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'black',
-      },
-      '&:hover fieldset': {
-        borderColor: 'black',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'black',
-      },
-    },
-  }}
-/>
 
+<TextField
+    label="Medication"
+    name="medication"
+    variant="outlined"
+    value={formData.medication}
+    onChange={handleChange}
+    error={!!formErrors.medication}
+    helperText={formErrors.medication}
+    InputLabelProps={{
+      style: { color: 'black' },
+    }}
+    sx={{
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'black',
+        },
+        '&:hover fieldset': {
+          borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: 'black',
+        },
+      },
+      '& .MuiInputBase-input': {
+        color: 'black', // Text color for input
+      },
+    }}
+  />
             <TextField
               label="Emergency Contact Number"
               name="emergencyContactNo"
@@ -604,7 +628,7 @@ const Donor = () => {
                 },
               }}
             />
-            <DialogActions>
+              <DialogActions>
             <Button
   onClick={handleCloseDialog}
   sx={{
