@@ -211,7 +211,7 @@ if (formData.donateBefore === 'yes') {
       </Button>
 
       <Dialog open={openDialog} onClose={handleCloseDialog}>
-      <DialogTitle
+      {/* <DialogTitle
   sx={{
     backgroundColor: '#AF0B0A', // Red background color
     color: 'white', // White text color for contrast
@@ -219,7 +219,7 @@ if (formData.donateBefore === 'yes') {
   }}
 >
   Blood Donation Form
-</DialogTitle>
+</DialogTitle> */}
 
 <DialogContent>
   <br />
@@ -234,12 +234,14 @@ if (formData.donateBefore === 'yes') {
               borderRadius: 4,
               boxShadow: 5,
               margin: 'auto',
+              border: '3px solid',        // Adding a solid border
+              borderColor: '#AF0B0A',
             }}
             noValidate
             autoComplete="off"
             onSubmit={handleSubmit}
           >
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{ color: '#AF0B0A', fontWeight: 'bold',fontSize:'30px' }}>
               Blood Donor Information
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>

@@ -203,11 +203,7 @@ const Requester = () => {
         }}
         fullWidth
       >
-        <DialogTitle>
-          <Typography variant="h6" sx={{ fontWeight: 'bold',backgroundColor: '#AF0B0A',color: 'white',padding: '16px'}}>
-            Blood Request Form
-          </Typography>
-        </DialogTitle>
+       
 
         <DialogContent>
         <br />
@@ -222,15 +218,18 @@ const Requester = () => {
               borderRadius: 4,
               boxShadow: 5,
               margin: 'auto',
+              border: '3px solid',        // Adding a solid border
+              borderColor: '#AF0B0A',
             }}
             noValidate
             autoComplete="off"
             onSubmit={handleSubmit}
           >
            
-            <Typography variant="h6" gutterBottom>
-              Requester Information
-            </Typography>
+           <Typography variant="h6" gutterBottom sx={{ color: '#AF0B0A', fontWeight: 'bold',fontSize:'30px' }}>
+  Requester Information
+</Typography>
+
             
             <TextField
               label="Patient Name"
